@@ -1,4 +1,4 @@
-package com.switchfully.parkshark.manager;
+package com.switchfully.parkshark.manager.domain;
 
 import jakarta.persistence.*;
 

@@ -1,5 +1,6 @@
 package com.switchfully.parkshark.manager;
 
+import com.switchfully.parkshark.manager.domain.Manager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
