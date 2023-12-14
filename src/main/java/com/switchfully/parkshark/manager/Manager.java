@@ -1,11 +1,23 @@
-package src.main.java.com.switchfully.parkshark.manager;
+package com.switchfully.parkshark.manager;
+
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="manager")
 public class Manager {
 
-    private final int id;
-    private final String username;
-    private final String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    public Manager() {
+    }
 
     public Manager(int id, String username, String password) {
         this.id = id;
@@ -13,7 +25,7 @@ public class Manager {
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -23,5 +35,14 @@ public class Manager {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
