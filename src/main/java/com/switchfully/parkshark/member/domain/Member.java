@@ -1,6 +1,5 @@
 package com.switchfully.parkshark.member.domain;
 
-import com.switchfully.parkshark.member.domain.dto.LicensePlate;
 import com.switchfully.parkshark.parking_lot.domain.Address;
 import jakarta.persistence.*;
 

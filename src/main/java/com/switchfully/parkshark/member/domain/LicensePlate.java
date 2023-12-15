@@ -1,4 +1,4 @@
-package com.switchfully.parkshark.member.domain.dto;
+package com.switchfully.parkshark.member.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

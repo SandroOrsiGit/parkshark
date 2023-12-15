@@ -1,11 +1,11 @@
 package com.switchfully.parkshark.manager.domain.dto;
 
-public class ManagerDTO {
+public class ManagerDto {
    private long id = 1L;
    private final String username;
    private final String password;
    
-   public ManagerDTO(long id, String username, String password) {
+   public ManagerDto(long id, String username, String password) {
       this.id = id;
       this.username = username;
       this.password = password;

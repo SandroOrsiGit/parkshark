@@ -2,11 +2,8 @@ package com.switchfully.parkshark.member.domain.dto;
 
 import com.switchfully.parkshark.member.domain.Name;
 import com.switchfully.parkshark.parking_lot.domain.Address;
-import jakarta.persistence.Embedded;
 
-import java.time.LocalDate;
-
-public class MemberDTO {
+public class MemberDto {
    
    private Name name;
    private Address address;
@@ -17,7 +14,7 @@ public class MemberDTO {
    
    private String licensePlate;
    
-   public MemberDTO(Name name, Address address, String telephoneNumber, String emailAddress, String licensePlate) {
+   public MemberDto(Name name, Address address, String telephoneNumber, String emailAddress, String licensePlate) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;

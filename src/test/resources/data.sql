@@ -1,1 +1,1 @@
-INSERT INTO manager (username, password) values('Test', 'Test');
+INSERT INTO MANAGER (username, password) values('Test', 'Test');
