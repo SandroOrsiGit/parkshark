@@ -15,6 +15,6 @@ public class ManagerService {
     }
 
     public Manager findManagerById (long id) {
-        return managerRepository.findManagersById(id).orElseThrow(IllegalArgumentException::new);
+        return managerRepository.findManagerById(id).orElseThrow(IllegalArgumentException::new);
     }
 }
