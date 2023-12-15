@@ -11,8 +11,9 @@ public class ParkingLotService {
 	private ParkingLotRepository parkingLotRepository;
 	private ParkingLotMapper parkingLotMapper;
 
-	public ParkingLotService(ParkingLotRepository parkingLotRepository) {
+	public ParkingLotService(ParkingLotRepository parkingLotRepository, ParkingLotMapper parkingLotMapper) {
 		this.parkingLotRepository = parkingLotRepository;
+		this.parkingLotMapper = parkingLotMapper;
 	}
 
 	public ParkingLotDto createParkingLot(CreateParkingLotDto createParkingLotDto) {
@@ -20,5 +21,6 @@ public class ParkingLotService {
 
 		parkingLotRepository.save(parkingLot);
 
+		return parkingLotMapper.mapParkingLotToParkingLotDto(parkingLot);
 	}
 }

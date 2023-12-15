@@ -5,6 +5,7 @@ import com.switchfully.parkshark.parking_lot.domain.Category;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,24 +24,25 @@ public class ParkingLot {
 	@Column(name = "parking_lot_id")
 	private long id;
 	private String name;
+	@Enumerated
 	private Category category;
 	@Column(name = "max_capacity")
-	private int maxCapacity;
+	private Integer maxCapacity;
 	@Column(name = "price_per_hour")
-	private double pricePerHour;
+	private Double pricePerHour;
 	@OneToOne
 	@JoinColumn(name = "fk_address_id")
 	private Address address;
 	@ManyToMany
 	@JoinTable(name = "parking_lot_contact_person",
-			joinColumns = {@JoinColumn (name = "parking_lot_id")},
-	inverseJoinColumns = {@JoinColumn( name = "contact_person_id")})
+			joinColumns = {@JoinColumn (name = "fk_parking_lot_id")},
+	inverseJoinColumns = {@JoinColumn( name = "fk_contact_person_id")})
 	private List<ContactPerson> contactPersons;
 
 	protected ParkingLot() {
 	}
 
-	public ParkingLot(String name, Category category, int maxCapacity, double pricePerHour, Address address, List<ContactPerson> contactPersons) {
+	public ParkingLot(String name, Category category, Integer maxCapacity, Double pricePerHour, Address address, List<ContactPerson> contactPersons) {
 		this.name = name;
 		this.category = category;
 		this.maxCapacity = maxCapacity;
@@ -61,11 +63,11 @@ public class ParkingLot {
 		return category;
 	}
 
-	public int getMaxCapacity() {
+	public Integer getMaxCapacity() {
 		return maxCapacity;
 	}
 
-	public double getPricePerHour() {
+	public Double getPricePerHour() {
 		return pricePerHour;
 	}
 

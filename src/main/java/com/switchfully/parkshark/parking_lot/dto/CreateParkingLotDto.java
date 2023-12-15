@@ -19,9 +19,9 @@ public class CreateParkingLotDto {
 	private String name;
 	private Category category;
 
-	private int maxCapacity;
+	private Integer maxCapacity;
 
-	private double pricePerHour;
+	private Double pricePerHour;
 
 	private Address address;
 
@@ -29,7 +29,7 @@ public class CreateParkingLotDto {
 
 
 
-	public CreateParkingLotDto(String name, Category category, int maxCapacity, double pricePerHour, Address address, List<ContactPerson> contactPersons) {
+	public CreateParkingLotDto(String name, Category category, Integer maxCapacity, Double pricePerHour, Address address, List<ContactPerson> contactPersons) {
 		this.name = name;
 		this.category = category;
 		this.maxCapacity = maxCapacity;
@@ -47,11 +47,11 @@ public class CreateParkingLotDto {
 		return category;
 	}
 
-	public int getMaxCapacity() {
+	public Integer getMaxCapacity() {
 		return maxCapacity;
 	}
 
-	public double getPricePerHour() {
+	public Double getPricePerHour() {
 		return pricePerHour;
 	}
 
