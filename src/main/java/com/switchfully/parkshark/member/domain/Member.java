@@ -42,6 +42,15 @@ public class Member {
       this.registrationDate = date;
    }
    
+   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+      this.name = name;
+      this.address = address;
+      this.telephoneNumber = telephoneNumber;
+      this.emailAddress = emailAddress;
+      this.licensePlate = licensePlate;
+      this.registrationDate = LocalDate.now();
+   }
+   
    public Name getName() {
       return name;
    }
