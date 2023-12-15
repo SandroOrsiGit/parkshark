@@ -4,6 +4,7 @@ import com.switchfully.parkshark.address.domain.Address;
 import com.switchfully.parkshark.member.domain.LicensePlate;
 import com.switchfully.parkshark.member.domain.Name;
 
+
 public class CreateMemberDto {
    private Name name;
    private Address address;

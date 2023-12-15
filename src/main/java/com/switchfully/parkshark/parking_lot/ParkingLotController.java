@@ -2,10 +2,9 @@ package com.switchfully.parkshark.parking_lot;
 
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "parking-lot")
@@ -17,8 +16,21 @@ public class ParkingLotController {
 		this.parkingLotService = parkingLotService;
 	}
 
+	//TODO add manager checks
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ParkingLotDto createParkingLot(@RequestBody CreateParkingLotDto createParkingLotDto){
 		return parkingLotService.createParkingLot(createParkingLotDto);
 	}
+
+	//TODO add manager checks
+	@GetMapping(produces = "application/json")
+	public List<ParkingLotDto> getAllParkingLots() {
+		return parkingLotService.getAllParkingLots();
+	}
+
+	@GetMapping(path = "{id}", produces = "application/json")
+	public ParkingLotDto getParkingLotById(@PathVariable long id) {
+		return parkingLotService.getParkingLotById(id);
+	}
+
 }

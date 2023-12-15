@@ -34,6 +34,14 @@ public class ContactPerson {
 	protected ContactPerson() {
 	}
 
+	public ContactPerson(String name, String mobilePhoneNumber, String telephoneNumber, String email, Address address) {
+		this.name = name;
+		this.mobilePhoneNumber = mobilePhoneNumber;
+		this.telephoneNumber = telephoneNumber;
+		this.email = email;
+		this.address = address;
+	}
+
 	public long getId() {
 		return id;
 	}
