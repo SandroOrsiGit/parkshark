@@ -23,9 +23,9 @@ public class MemberService {
       return memberMapper.mapMemberToMemberDto(memberRepository.save(memberMapper.mapCreateMemberDtoToMember(createMemberDto)));
    }
    
-   public Member getMemberById(Long memberId) {
-      return memberRepository.findById(memberId)
-              .orElseThrow(() -> new RuntimeException("Member not found with ID: " + memberId));
+   public MemberDto getMemberById(Long memberId) {
+      return memberMapper.mapMemberToMemberDto(memberRepository.findById(memberId)
+              .orElseThrow(() -> new RuntimeException("Member not found with ID: " + memberId)));
    }
 
    public List<MemberDto> getAllMembers() {
