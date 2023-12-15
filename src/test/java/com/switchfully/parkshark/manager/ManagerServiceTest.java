@@ -26,13 +26,17 @@ class ManagerServiceTest {
    @Test
    void findManagerById_ShouldReturnManagerWhenFound() {
       
-      long managerId = 1L;
-      Manager expectedManager = new Manager();
-      expectedManager.setId(managerId);
+
+      Manager expectedManager = new Manager(
+              1,
+              "test",
+              "test"
+      );
+      expectedManager.setId(1);
       
       managerRepository.save(expectedManager);
       
-      Manager actualManager = managerService.findManagerById(managerId);
+      Manager actualManager = managerService.findManagerById(1);
       
       assertEquals(expectedManager, actualManager);
    

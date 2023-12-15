@@ -21,6 +21,11 @@ public class MemberController {
    public List<MemberDto> getAllMembers() {
       return memberService.getAllMembers();
    }
+
+   @GetMapping(produces = "application/json", path="{id}")
+   public MemberDto getMemberById(@PathVariable long id) {
+      return memberService.getMemberById(id);
+   }
    
    @PostMapping(produces = "application/json", consumes = "application/json")
    public MemberDto createMember(@RequestBody CreateMemberDto createMemberDto) {
