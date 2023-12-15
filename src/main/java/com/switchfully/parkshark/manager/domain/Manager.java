@@ -36,7 +36,11 @@ public class Manager {
     public String getPassword() {
         return password;
     }
-
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     @Override
     public String toString() {
         return "Manager{" +
