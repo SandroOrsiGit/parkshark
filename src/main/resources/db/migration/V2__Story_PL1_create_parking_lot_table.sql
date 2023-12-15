@@ -45,12 +45,7 @@ CREATE TABLE "parking_lot"
     max_capacity         INTEGER          NOT NULL,
     price_per_hour       DOUBLE PRECISION NOT NULL,
     fk_address_id        INTEGER          NOT NULL,
-    fk_contact_person_id INTEGER          NOT NULL,
 
-
-    CONSTRAINT fk_contact_person
-        FOREIGN KEY (fk_contact_person_id)
-            REFERENCES contact_person (contact_person_id),
     CONSTRAINT fk_address
         FOREIGN KEY (fk_address_id)
             REFERENCES address (address_id)

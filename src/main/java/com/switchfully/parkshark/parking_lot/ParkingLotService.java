@@ -5,6 +5,9 @@ import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ParkingLotService {
 
@@ -25,5 +28,13 @@ public class ParkingLotService {
 	}
 
 
+    public List<ParkingLotDto> getAllParkingLots() {
 
+        return parkingLotRepository.findAll().stream().map(parkingLot -> parkingLotMapper.mapParkingLotToParkingLotDto(parkingLot)).toList();
+    }
+
+	//TODO add custom exceptions
+	public ParkingLotDto getParkingLotById(long id) {
+		return parkingLotMapper.mapParkingLotToParkingLotDto(parkingLotRepository.findById(id).orElseThrow(IllegalArgumentException::new));
+	}
 }
