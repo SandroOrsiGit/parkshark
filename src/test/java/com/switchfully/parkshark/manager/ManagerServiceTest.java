@@ -12,12 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 
 @SpringBootTest
-@AutoConfigureTestDatabase
-@SqlGroup({
-        @Sql(value = "classpath:schema.sql", executionPhase = BEFORE_TEST_METHOD),
-        @Sql(value = "classpath:data.sql", executionPhase = BEFORE_TEST_METHOD)}
-        
-)
+
+@Sql("/data.sql")
+
 class ManagerServiceTest {
    
    @Autowired

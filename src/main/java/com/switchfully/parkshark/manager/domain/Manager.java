@@ -2,8 +2,10 @@ package com.switchfully.parkshark.manager.domain;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
-@Table(name="manager")
+@Table(name="MANAGER")
 public class Manager {
 
     @Id
@@ -37,6 +39,9 @@ public class Manager {
         return password;
     }
     
+
+    // TODO - refactor
+
     public void setId(long id) {
         this.id = id;
     }
@@ -48,5 +53,20 @@ public class Manager {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Manager manager = (Manager) o;
+        return id == manager.id;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
