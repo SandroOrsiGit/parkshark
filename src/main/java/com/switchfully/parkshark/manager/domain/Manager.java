@@ -3,7 +3,7 @@ package com.switchfully.parkshark.manager.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="manager")
+@Table(name="MANAGER")
 public class Manager {
 
     @Id

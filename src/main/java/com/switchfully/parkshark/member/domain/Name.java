@@ -7,11 +7,11 @@ import jakarta.persistence.Embedded;
 @Embeddable
 public final class Name {
    
-   @Column(name = "FIRST_NAMe")
-   private final String firstName;
+   @Column(name = "first_name")
+   private String firstName;
    
-   @Column(name = "LAST_NAME")
-   private final String lastName;
+   @Column(name = "last_name")
+   private String lastName;
    
    public Name() {
    }

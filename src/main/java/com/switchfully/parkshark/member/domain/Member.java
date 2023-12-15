@@ -1,62 +1,73 @@
 package com.switchfully.parkshark.member.domain;
 
+import com.switchfully.parkshark.member.domain.dto.LicensePlate;
 import com.switchfully.parkshark.parking_lot.domain.Address;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import org.springframework.cglib.core.Local;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
+@Entity
+@Table(name = "MEMBER")
 public class Member {
    
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
    @Embedded
    private Name name;
-   private Address adress;
-   
+   @OneToOne
+   @JoinColumn(name = "fk_address_id")
+   private  Address address;
+   @Column(name = "telephone_number")
    private String telephoneNumber;
    
-   private String emailAdress;
+   @Column(name = "email_address")
+   private String emailAddress;
    
-   private String licensePlate;
+   @Embedded
+   private LicensePlate licensePlate;
    
-   private LocalDate date;
+   @Column(name = "registrationDate")
+   private LocalDate registrationDate;
    
-   public Member(Name name, Address adress, String telephoneNumber, String emailAdress, String licensePlate, LocalDate date) {
+   public Member() {
+   }
+   
+   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate date) {
       this.name = name;
-      this.adress = adress;
+      this.address = address;
       this.telephoneNumber = telephoneNumber;
-      this.emailAdress = emailAdress;
+      this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
-      this.date = date;
+      this.registrationDate = date;
    }
    
    public Name getName() {
       return name;
    }
    
-   public Address getAdress() {
-      return adress;
+   public Address getAddress() {
+      return address;
    }
    
    public String getTelephoneNumber() {
       return telephoneNumber;
    }
    
-   public String getEmailAdress() {
-      return emailAdress;
+   public String getEmailAddress() {
+      return emailAddress;
    }
    
-   public String getLicensePlate() {
+   public LicensePlate getLicensePlate() {
       return licensePlate;
    }
    
    public LocalDate getDate() {
-      return date;
+      return registrationDate;
    }
    
    @Override
    public String toString() {
-      return "Member{" + "name=" + name + ", adress=" + adress + ", telephoneNumber='" + telephoneNumber + '\'' + ", emailAdress='" + emailAdress + '\'' + ", licensePlate='" + licensePlate + '\'' + ", date=" + date + '}';
+      return "Member{" + "name=" + name + ", address=" + address + ", telephoneNumber='" + telephoneNumber + '\'' + ", emailAddress='" + emailAddress + '\'' + ", licensePlate='" + licensePlate + '\'' + ", date=" + registrationDate + '}';
    }
 }
