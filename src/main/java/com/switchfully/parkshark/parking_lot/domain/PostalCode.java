@@ -20,6 +20,11 @@ public class PostalCode {
 	protected PostalCode() {
 	}
 
+	public PostalCode(String postalCode, String location) {
+		this.postalCode = postalCode;
+		this.location = location;
+	}
+
 	public long getId() {
 		return id;
 	}
