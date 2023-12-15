@@ -1,7 +1,7 @@
 package com.switchfully.parkshark.parking_lot.domain;
 
+import com.switchfully.parkshark.address.domain.Address;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +14,7 @@ public class ContactPerson {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "contact_person_id")
 	private long id;
 
 	private String name;

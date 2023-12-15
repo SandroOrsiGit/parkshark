@@ -1,6 +1,6 @@
 package com.switchfully.parkshark.member.domain;
 
-import com.switchfully.parkshark.parking_lot.domain.Address;
+import com.switchfully.parkshark.address.domain.Address;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

@@ -23,4 +23,7 @@ public class ParkingLotService {
 
 		return parkingLotMapper.mapParkingLotToParkingLotDto(parkingLot);
 	}
+
+
+
 }
