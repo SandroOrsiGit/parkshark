@@ -29,6 +29,11 @@ public class Address {
 	protected Address() {
 	}
 
+	public Address(String streetName, String streetNumber, PostalCode postalCode) {
+		this.streetName = streetName;
+		this.streetNumber = streetNumber;
+		this.postalCode = postalCode;
+	}
 
 	public long getId() {
 		return id;

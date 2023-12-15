@@ -3,7 +3,9 @@ package com.switchfully.parkshark.parking_lot;
 import com.switchfully.parkshark.parking_lot.domain.ParkingLot;
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ParkingLotMapper {
 
 	public ParkingLot mapCreateParkingLotDtoToParkingLot(CreateParkingLotDto createParkingLotDto){
