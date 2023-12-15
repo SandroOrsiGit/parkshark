@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 public class PostalCode {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "postal_code_id")
 	private long id;
 
 	@Column(name = "postal_code")

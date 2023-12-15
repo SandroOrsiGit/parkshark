@@ -1,9 +1,7 @@
 package com.switchfully.parkshark.parking_lot.domain;
 
-import com.switchfully.parkshark.parking_lot.domain.Address;
-import com.switchfully.parkshark.parking_lot.domain.Category;
+import com.switchfully.parkshark.address.domain.Address;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;

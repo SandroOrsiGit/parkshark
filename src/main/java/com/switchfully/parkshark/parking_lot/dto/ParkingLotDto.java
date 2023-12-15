@@ -1,16 +1,8 @@
 package com.switchfully.parkshark.parking_lot.dto;
 
-import com.switchfully.parkshark.parking_lot.domain.Address;
+import com.switchfully.parkshark.address.domain.Address;
 import com.switchfully.parkshark.parking_lot.domain.Category;
 import com.switchfully.parkshark.parking_lot.domain.ContactPerson;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 
 import java.util.List;
 
