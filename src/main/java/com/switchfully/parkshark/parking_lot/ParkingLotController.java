@@ -16,8 +16,8 @@ public class ParkingLotController {
 		this.parkingLotService = parkingLotService;
 	}
 
-//	@PostMapping(consumes = "application/json", produces = "application/json")
-//	public ParkingLotDto createParkingLot(CreateParkingLotDto createParkingLotDto){
-//		return parkingLotService.createParkingLot(createParkingLotDto);
-//	}
+	@PostMapping(consumes = "application/json", produces = "application/json")
+	public ParkingLotDto createParkingLot(CreateParkingLotDto createParkingLotDto){
+		return parkingLotService.createParkingLot(createParkingLotDto);
+	}
 }
