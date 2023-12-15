@@ -4,6 +4,8 @@ import com.switchfully.parkshark.member.domain.LicensePlate;
 import com.switchfully.parkshark.member.domain.Name;
 import com.switchfully.parkshark.address.domain.Address;
 
+import java.time.LocalDate;
+
 public class MemberDto {
    
    private Name name;
@@ -15,12 +17,15 @@ public class MemberDto {
    
    private LicensePlate licensePlate;
    
-   public MemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+   private LocalDate registrationDate;
+   
+   public MemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate registrationDate) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
+      this.registrationDate = registrationDate;
    }
    
    public Name getName() {
@@ -41,5 +46,9 @@ public class MemberDto {
    
    public LicensePlate getLicensePlate() {
       return licensePlate;
+   }
+   
+   public LocalDate getRegistrationDate() {
+      return registrationDate;
    }
 }

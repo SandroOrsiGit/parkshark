@@ -2,6 +2,7 @@ package com.switchfully.parkshark.member.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 import java.util.Locale;
@@ -13,13 +14,13 @@ public class LicensePlate {
    private String number;
    
    @Column(name = "license_plate_country")
-   @Enumerated
-   private Locale.IsoCountryCode country;
+
+   private String country;
    
    public LicensePlate() {
    }
    
-   public LicensePlate(String number, Locale.IsoCountryCode country) {
+   public LicensePlate(String number, String country) {
       this.number = number;
       this.country = country;
    }
@@ -28,7 +29,7 @@ public class LicensePlate {
       return number;
    }
    
-   public Locale.IsoCountryCode getCountry() {
+   public String getCountry() {
       return country;
    }
 }

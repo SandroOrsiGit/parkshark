@@ -1,9 +1,8 @@
 package com.switchfully.parkshark.member;
 
 import com.switchfully.parkshark.member.domain.Member;
+import com.switchfully.parkshark.member.domain.dto.CreateMemberDto;
 import com.switchfully.parkshark.member.domain.dto.MemberDto;
-import com.switchfully.parkshark.member.domain.dto.MemberMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,15 +19,16 @@ public class MemberService {
       this.memberMapper = memberMapper;
    }
 
-   public Member saveMember(Member member) {
-      return memberRepository.save(member);
+   public MemberDto saveMember(CreateMemberDto createMemberDto) {
+      return memberMapper.mapMemberToMemberDto(memberRepository.save(memberMapper.mapCreateMemberDtoToMember(createMemberDto)));
    }
    
-   public Optional<Member> getMemberById(Long memberId) {
-      return memberRepository.findById(memberId);
+   public Member getMemberById(Long memberId) {
+      return memberRepository.findById(memberId)
+              .orElseThrow(() -> new RuntimeException("Member not found with ID: " + memberId));
    }
 
    public List<MemberDto> getAllMembers() {
-      return memberRepository.findAll().stream().map(memberMapper::toDto).toList();
+      return memberRepository.findAll().stream().map(memberMapper::mapMemberToMemberDto).toList();
    }
 }
