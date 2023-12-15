@@ -1,11 +1,9 @@
 package com.switchfully.parkshark.member.domain.dto;
 
-import com.switchfully.parkshark.member.domain.LicensePlate;
 import com.switchfully.parkshark.member.domain.Name;
-import com.switchfully.parkshark.address.domain.Address;
+import com.switchfully.parkshark.parking_lot.domain.Address;
 
-public class MemberDto {
-   
+public class CreateMemberDto {
    private Name name;
    private Address address;
    
@@ -13,9 +11,9 @@ public class MemberDto {
    
    private String emailAddress;
    
-   private LicensePlate licensePlate;
+   private String licensePlate;
    
-   public MemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+   public CreateMemberDto(Name name, Address address, String telephoneNumber, String emailAddress, String licensePlate) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
@@ -39,7 +37,7 @@ public class MemberDto {
       return emailAddress;
    }
    
-   public LicensePlate getLicensePlate() {
+   public String getLicensePlate() {
       return licensePlate;
    }
 }
