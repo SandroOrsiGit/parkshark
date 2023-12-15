@@ -1,7 +1,7 @@
 package com.switchfully.parkshark.member.domain.dto;
 
 import com.switchfully.parkshark.member.domain.Name;
-import com.switchfully.parkshark.parking_lot.domain.Address;
+import com.switchfully.parkshark.address.domain.Address;
 
 public class CreateMemberDto {
    private Name name;
