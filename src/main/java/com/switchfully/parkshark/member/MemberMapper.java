@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemberMapper {
    public MemberDto mapMemberToMemberDto(Member member) {
-      return new MemberDto(member.getName(), member.getAddress(), member.getTelephoneNumber(), member.getEmailAddress(), member.getLicensePlate(), member.getDate());
+      return new MemberDto(member.getName(), member.getAddress(), member.getTelephoneNumber(), member.getEmailAddress(), member.getLicensePlate(), member.getDate(), member.getMembershipLevel());
    }
    
    public Member mapCreateMemberDtoToMember(CreateMemberDto createMemberDto) {
-      return new Member(createMemberDto.getName(), createMemberDto.getAddress(), createMemberDto.getTelephoneNumber(), createMemberDto.getEmailAddress(), createMemberDto.getLicensePlate());
+      return new Member(createMemberDto.getName(), createMemberDto.getAddress(), createMemberDto.getTelephoneNumber(), createMemberDto.getEmailAddress(), createMemberDto.getLicensePlate(), createMemberDto.getMembershipLevel());
    }
 }

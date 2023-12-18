@@ -2,6 +2,7 @@ package com.switchfully.parkshark.member.domain.dto;
 
 import com.switchfully.parkshark.address.domain.Address;
 import com.switchfully.parkshark.member.domain.LicensePlate;
+import com.switchfully.parkshark.member.domain.MembershipLevel;
 import com.switchfully.parkshark.member.domain.Name;
 
 
@@ -14,13 +15,16 @@ public class CreateMemberDto {
    private String emailAddress;
    
    private LicensePlate licensePlate;
+
+   private MembershipLevel membershipLevel;
    
-   public CreateMemberDto (Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+   public CreateMemberDto (Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, MembershipLevel membershipLevel) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
+      this.membershipLevel = membershipLevel;
    }
    
    public Name getName() {
@@ -41,5 +45,9 @@ public class CreateMemberDto {
    
    public LicensePlate getLicensePlate() {
       return licensePlate;
+   }
+
+   public MembershipLevel getMembershipLevel() {
+      return membershipLevel;
    }
 }

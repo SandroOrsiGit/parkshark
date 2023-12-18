@@ -4,6 +4,7 @@ import com.switchfully.parkshark.address.domain.Address;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "MEMBER")
@@ -27,28 +28,38 @@ public class Member {
    @Embedded
    private LicensePlate licensePlate;
    
-   @Column(name = "registrationDate")
+   @Column(name = "registration_date")
    private LocalDate registrationDate;
+
+   @Enumerated(EnumType.STRING)
+   @Column(name = "membership_level")
+   private MembershipLevel membershipLevel;
    
    public Member() {
    }
    
-   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate date) {
+   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate date, MembershipLevel membershipLevel) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
       this.registrationDate = date;
+      this.membershipLevel = membershipLevel;
    }
    
-   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, MembershipLevel membershipLevel) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
+      this.membershipLevel = membershipLevel;
       this.registrationDate = LocalDate.now();
+   }
+   
+   public Long getId() {
+      return id;
    }
    
    public Name getName() {
@@ -73,6 +84,25 @@ public class Member {
    
    public LocalDate getDate() {
       return registrationDate;
+   }
+
+   public MembershipLevel getMembershipLevel() {
+      return membershipLevel;
+   }
+   
+   @Override
+   public boolean equals(Object o) {
+      if (this == o)
+         return true;
+      if (o == null || getClass() != o.getClass())
+         return false;
+      Member member = (Member) o;
+      return Objects.equals(id, member.id);
+   }
+   
+   @Override
+   public int hashCode() {
+      return Objects.hash(id);
    }
    
    @Override
