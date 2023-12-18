@@ -1,14 +1,7 @@
 package com.switchfully.parkshark.address.domain;
 
 import com.switchfully.parkshark.parking_lot.domain.PostalCode;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Address {
@@ -24,7 +17,7 @@ public class Address {
 	@Column(name = "street_number")
 	private String streetNumber;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fk_postal_code_id")
 	private PostalCode postalCode;
 

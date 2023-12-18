@@ -1,13 +1,7 @@
 package com.switchfully.parkshark.parking_lot.domain;
 
 import com.switchfully.parkshark.address.domain.Address;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class ContactPerson {
@@ -27,7 +21,7 @@ public class ContactPerson {
 
 	private String email;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fk_address_id")
 	private Address address;
 

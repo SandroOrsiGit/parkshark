@@ -19,10 +19,10 @@ public class ParkingLot {
 	private Integer maxCapacity;
 	@Column(name = "price_per_hour")
 	private Double pricePerHour;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fk_address_id")
 	private Address address;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "parking_lot_contact_person",
 			joinColumns = {@JoinColumn (name = "fk_parking_lot_id")},
 	inverseJoinColumns = {@JoinColumn( name = "fk_contact_person_id")})
