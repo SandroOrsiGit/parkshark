@@ -14,7 +14,7 @@ public class DivisionController {
       this.divisionService = divisionService;
    }
    
-   @PostMapping(produces = "application/json")
+   @PostMapping(produces = "application/json", consumes = "application/json")
    public DivisionDto createDivision(@RequestBody CreateDivisionDto createDivisionDto) {
       return divisionService.saveDivision((createDivisionDto));
    }

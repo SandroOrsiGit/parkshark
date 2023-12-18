@@ -7,6 +7,9 @@ public class CreateDivisionDto {
 
    private long parentId;
 
+   public CreateDivisionDto() {
+   }
+
    public CreateDivisionDto(String divisionName, String originalName, String director, long parentId) {
       this.divisionName = divisionName;
       this.originalName = originalName;

@@ -28,8 +28,7 @@ public class Division {
    public Division() {
    }
 
-   public Division(long id, String divisionName, String originalName, String director, long parentId) {
-      this.id = id;
+   public Division(String divisionName, String originalName, String director, long parentId) {
       this.divisionName = divisionName;
       this.originalName = originalName;
       this.director = director;
