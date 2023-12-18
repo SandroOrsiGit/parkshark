@@ -7,24 +7,18 @@ import com.switchfully.parkshark.parking_lot.domain.ParkingLot;
 import com.switchfully.parkshark.parking_lot.domain.PostalCode;
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ParkingLotServiceTest {
     @Autowired
     private ParkingLotService parkingLotService;
@@ -176,14 +170,61 @@ public class ParkingLotServiceTest {
 
     @Test
     void givenTwoNewParkingLotsInDatabase_whenGetAllParkingLots_thenReturnTheseParkingLots() {
+        //GIVEN
+        CreateParkingLotDto createParkingLotDto1 =
+                new CreateParkingLotDto("marko of parksharko",
+                        Category.ABOVE_GROUND_BUILDING,
+                        2000,
+                        4.5,
+                        new Address("StreetOfMarko",
+                                "NumberOfMarko",
+                                new PostalCode("12345o",
+                                        "MarkoVille")),
+                        List.of(
+                                new ContactPerson("Marko",
+                                        "MarkosMobile",
+                                        null,
+                                        "marko@parkshark.com",
+                                        new Address("StreetName",
+                                                "StreetNumber",
+                                                new PostalCode("12345",
+                                                        "MarkoVille")))));
 
+
+        ParkingLotDto parkingLotDto1 = parkingLotService.createParkingLot(createParkingLotDto1);
+
+        CreateParkingLotDto createParkingLotDto2 =
+                new CreateParkingLotDto("markeh of parksharkeh",
+                        Category.UNDERGROUND_BUILDING,
+                        2500,
+                        8.5,
+                        new Address("StreetOfMarkeh",
+                                "NumberOfMarkeh",
+                                new PostalCode("12345eh",
+                                        "MarkehVille")),
+                        List.of(
+                                new ContactPerson("Markeh",
+                                        "MarkehsMobile",
+                                        null,
+                                        "markehparkshark.com",
+                                        new Address("StreetName",
+                                                "StreetNumber",
+                                                new PostalCode("12345",
+                                                        "MarkehVille")))));
+
+
+        ParkingLotDto parkingLotDto2 = parkingLotService.createParkingLot(createParkingLotDto2);
 
         //WHEN
         List<ParkingLotDto> parkingLotDtoList = parkingLotService.getAllParkingLots();
 
         //THEN
         assertThat(parkingLotDtoList).allSatisfy(parkingLotDto -> assertThat(parkingLotDto).isInstanceOf(ParkingLotDto.class));
-        assertThat(parkingLotDtoList).hasSize(1);
+        assertThat(parkingLotDtoList).hasSize(3);
+
+        assertThat(parkingLotDtoList.get(0).getName()).isEqualTo("ParkingLotName");
+        assertThat(parkingLotDtoList.get(1).getName()).isEqualTo(parkingLotDto1.getName());
+        assertThat(parkingLotDtoList.get(2).getName()).isEqualTo(parkingLotDto2.getName());
 
 
     }
