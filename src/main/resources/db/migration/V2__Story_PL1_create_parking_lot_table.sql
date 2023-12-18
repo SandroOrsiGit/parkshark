@@ -1,4 +1,4 @@
-CREATE TABLE "postal_code"
+CREATE TABLE IF NOT EXISTS "postal_code"
 (
     postal_code_id SERIAL PRIMARY KEY,
     postal_code    VARCHAR(255) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE "postal_code"
 
 );
 
-CREATE TABLE "address"
+CREATE TABLE IF NOT EXISTS "address"
 (
     address_id        SERIAL PRIMARY KEY,
     street_name       VARCHAR(255) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE "address"
             REFERENCES postal_code (postal_code_id)
 );
 
-CREATE TABLE "contact_person"
+CREATE TABLE IF NOT EXISTS "contact_person"
 (
     contact_person_id   SERIAL PRIMARY KEY,
     name                VARCHAR(255) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE "contact_person"
 
 
 
-CREATE TABLE "parking_lot"
+CREATE TABLE IF NOT EXISTS "parking_lot"
 (
     parking_lot_id       SERIAL PRIMARY KEY,
     name                 VARCHAR(255)     NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE "parking_lot"
             REFERENCES address (address_id)
 );
 
-CREATE TABLE "parking_lot_contact_person"
+CREATE TABLE IF NOT EXISTS "parking_lot_contact_person"
 (
     fk_parking_lot_id    INTEGER NOT NULL,
     fk_contact_person_id INTEGER NOT NULL,

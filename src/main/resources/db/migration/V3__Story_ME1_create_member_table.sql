@@ -1,5 +1,5 @@
 
-CREATE TABLE "member"
+CREATE TABLE IF NOT EXISTS "member"
 (
     member_id SERIAL primary key,
     first_name VARCHAR(255) NOT NULL,
