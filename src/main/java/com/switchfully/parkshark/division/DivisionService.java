@@ -1,9 +1,10 @@
 package com.switchfully.parkshark.division;
 
-import com.switchfully.parkshark.division.domain.Division;
+
 import com.switchfully.parkshark.division.domain.dto.CreateDivisionDto;
 import com.switchfully.parkshark.division.domain.dto.DivisionDto;
-import org.springframework.dao.DataIntegrityViolationException;
+
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
