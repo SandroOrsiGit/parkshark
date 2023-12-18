@@ -10,7 +10,8 @@ public class Division {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private long id;
+   @Column(name = "division_id")
+   private Long id;
    
    @Column(name = "division_name")
    private String divisionName;
@@ -20,8 +21,19 @@ public class Division {
    
    @Column(name = "director")
    private String director;
-   
+
+   @Column(name = "parent_division_id")
+   private Long parentId;
+
+
    public Division() {
+   }
+
+   public Division(String divisionName, String originalName, String director, Long parentId) {
+      this.divisionName = divisionName;
+      this.originalName = originalName;
+      this.director = director;
+      this.parentId = parentId;
    }
    
    public Division(String divisionName, String originalName, String director) {
@@ -30,7 +42,7 @@ public class Division {
       this.director = director;
    }
    
-   public long getId() {
+   public Long getId() {
       return id;
    }
    
@@ -45,7 +57,11 @@ public class Division {
    public String getDirector() {
       return director;
    }
-   
+
+   public Long getParentId() {
+      return parentId;
+   }
+
    @Override
    public String toString() {
       return "Division{" + "id=" + id + ", divisionName='" + divisionName + '\'' + ", originalName='" + originalName + '\'' + ", director='" + director + '\'' + '}';

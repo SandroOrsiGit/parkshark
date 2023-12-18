@@ -7,6 +7,8 @@ public class DivisionDto {
    private final String originalName;
    
    private final String director;
+
+   private Long parentId;
    
    public DivisionDto(String divisionName, String originalName, String director) {
       
@@ -14,7 +16,14 @@ public class DivisionDto {
       this.originalName = originalName;
       this.director = director;
    }
-   
+
+   public DivisionDto(String divisionName, String originalName, String director, Long parentId) {
+      this.divisionName = divisionName;
+      this.originalName = originalName;
+      this.director = director;
+      this.parentId = parentId;
+   }
+
    public String getDivisionName() {
       return divisionName;
    }
@@ -25,5 +34,19 @@ public class DivisionDto {
    
    public String getDirector() {
       return director;
+   }
+
+   public Long getParentId() {
+      return parentId;
+   }
+
+   @Override
+   public String toString() {
+      return "DivisionDto{" +
+              "divisionName='" + divisionName + '\'' +
+              ", originalName='" + originalName + '\'' +
+              ", director='" + director + '\'' +
+              ", parentId=" + parentId +
+              '}';
    }
 }

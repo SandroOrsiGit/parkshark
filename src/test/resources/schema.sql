@@ -70,7 +70,15 @@ CREATE TABLE  IF NOT EXISTS "parking_lot_contact_person"
     CONSTRAINT  IF NOT EXISTS fk_contact_person
         FOREIGN KEY (fk_contact_person_id)
             REFERENCES contact_person (contact_person_id)
+);
 
-)
-
-
+CREATE TABLE IF NOT EXISTS "division"
+(
+    division_id            SERIAL PRIMARY KEY,
+    division_name          VARCHAR(255) NOT NULL,
+    original_division_name VARCHAR(255) NOT NULL,
+    director               VARCHAR(255) NOT NULL,
+    parent_division_id     INTEGER
+        CONSTRAINT fk_parent_id
+            REFERENCES division
+);

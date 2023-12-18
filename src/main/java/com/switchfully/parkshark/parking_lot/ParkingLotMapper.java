@@ -14,7 +14,8 @@ public class ParkingLotMapper {
 				createParkingLotDto.getMaxCapacity(),
 				createParkingLotDto.getPricePerHour(),
 				createParkingLotDto.getAddress(),
-				createParkingLotDto.getContactPersons());
+				createParkingLotDto.getContactPersons(),
+				createParkingLotDto.getDivision());
 	}
 
 	public ParkingLotDto mapParkingLotToParkingLotDto(ParkingLot parkingLot){
@@ -24,6 +25,7 @@ public class ParkingLotMapper {
 				parkingLot.getMaxCapacity(),
 				parkingLot.getPricePerHour(),
 				parkingLot.getAddress(),
-				parkingLot.getContactPersons());
+				parkingLot.getContactPersons(),
+				parkingLot.getDivision());
 	}
 }

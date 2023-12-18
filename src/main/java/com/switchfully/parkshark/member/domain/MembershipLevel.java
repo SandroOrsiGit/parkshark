@@ -27,3 +27,5 @@ public enum MembershipLevel {
         return maxAllowedParkingTime;
     }
 }
+
+// TODO check on possible refactor (factory class) (check previous codelabs)
