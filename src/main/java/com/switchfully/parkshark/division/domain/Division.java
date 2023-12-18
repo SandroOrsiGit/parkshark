@@ -15,7 +15,7 @@ public class Division {
    @Column(name = "division_name")
    private String divisionName;
    
-   @Column(name = "original_name")
+   @Column(name = "original_division_name")
    private String originalName;
    
    @Column(name = "director")
