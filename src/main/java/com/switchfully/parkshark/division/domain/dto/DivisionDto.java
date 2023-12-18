@@ -39,4 +39,14 @@ public class DivisionDto {
    public long getParentId() {
       return parentId;
    }
+
+   @Override
+   public String toString() {
+      return "DivisionDto{" +
+              "divisionName='" + divisionName + '\'' +
+              ", originalName='" + originalName + '\'' +
+              ", director='" + director + '\'' +
+              ", parentId=" + parentId +
+              '}';
+   }
 }
