@@ -38,9 +38,6 @@ public class Manager {
         return password;
     }
 
-
-//     TODO - refactor
-
     public void setId(long id) {
         this.id = id;
     }
