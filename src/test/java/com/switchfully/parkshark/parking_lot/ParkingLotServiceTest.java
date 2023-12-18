@@ -10,6 +10,7 @@ import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
 public class ParkingLotServiceTest {
     @Autowired
     private ParkingLotService parkingLotService;
@@ -29,8 +31,11 @@ public class ParkingLotServiceTest {
     @Autowired
     private ParkingLotMapper parkingLotMapper;
 
+
 //    @BeforeEach
-//    void clearDataBase(@Autowired Flyway flyway)
+//    void clearDataBase(@Autowired Flyway flyway) {
+//        flyway.clean();
+//    }
 
     @Test
     void givenParkingLot_whenMappingParkingLotToParkingLotDto_thenResultIsOfTypeParkingLotDtoWithSameFields() {
@@ -117,8 +122,21 @@ public class ParkingLotServiceTest {
 
         parkingLotService.createParkingLot(createParkingLotDto);
 
-//        assertThat(parkingLotRepository.findParkingLotById(2).get().getName()).isEqualTo("mark of parkshark");
-        assertThat(parkingLotService.getParkingLotById(2).getName()).isEqualTo("mark of parkshark");
+        //WHEN
+        ParkingLotDto actual = parkingLotService.getParkingLotById(2);
+
+        //THEN
+        assertThat(actual.getName()).isEqualTo("mark of parkshark");
+        assertThat(actual.getContactPersons())
+                .hasSize(1)
+                        .extracting(ContactPerson::getMobilePhoneNumber)
+                                .containsExactly("MarksMobile");
+        assertThat(actual.getContactPersons())
+                .extracting(ContactPerson::getTelephoneNumber)
+                        .containsExactly((String) null);
+        assertThat(actual.getContactPersons())
+                .extracting(ContactPerson::getEmail)
+                        .containsExactly("mark@parkshark.com");
     }
 
     @Test
@@ -144,21 +162,28 @@ public class ParkingLotServiceTest {
                                                         "MarkVille")))));
 
 
-        parkingLotService.createParkingLot(createParkingLotDto);
+        ParkingLotDto parkingLotDto = parkingLotService.createParkingLot(createParkingLotDto);
 
         //TODO check if ID cleans up after each test
         //WHEN
-        ParkingLotDto actual = parkingLotService.getParkingLotById(3);
+        ParkingLotDto actual = parkingLotService.getParkingLotById(parkingLotDto.getId());
 
         //TODO add custom exception
         //THEN
         assertThat(actual.getName()).isEqualTo("marky of parksharky");
         assertThat(actual.getMaxCapacity()).isEqualTo(2000);
+        assertThat(actual.getAddress().getPostalCode().getLocation()).isEqualTo("MarkVille");
+        assertThat(actual.getAddress().getPostalCode().getPostalCode()).isEqualTo("12345");
     }
 
     @Test
     void givenTwoNewParkingLotsInDatabase_whenGetAllParkingLots_thenReturnTheseParkingLots() {
+        //WHEN
+        List<ParkingLotDto> parkingLotDtoList = parkingLotService.getAllParkingLots();
 
+        //THEN
+        assertThat(parkingLotDtoList).allSatisfy(parkingLotDto -> assertThat(parkingLotDto).isInstanceOf(ParkingLotDto.class));
+        assertThat(parkingLotDtoList).hasSize(1);
 
 
     }
