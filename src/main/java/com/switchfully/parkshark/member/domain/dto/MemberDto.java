@@ -8,7 +8,8 @@ import com.switchfully.parkshark.address.domain.Address;
 import java.time.LocalDate;
 
 public class MemberDto {
-   
+
+   private long id;
    private Name name;
    private Address address;
    
@@ -22,7 +23,8 @@ public class MemberDto {
 
    private MembershipLevel membershipLevel;
    
-   public MemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate registrationDate, MembershipLevel membershipLevel) {
+   public MemberDto(long id, Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate registrationDate, MembershipLevel membershipLevel) {
+      this.id = id;
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
@@ -31,7 +33,11 @@ public class MemberDto {
       this.registrationDate = registrationDate;
       this.membershipLevel = membershipLevel;
    }
-   
+
+   public long getId() {
+      return id;
+   }
+
    public Name getName() {
       return name;
    }

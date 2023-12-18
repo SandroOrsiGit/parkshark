@@ -26,6 +26,17 @@ public class CreateMemberDto {
       this.licensePlate = licensePlate;
       this.membershipLevel = membershipLevel;
    }
+
+   public CreateMemberDto (Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+      this.name = name;
+      this.address = address;
+      this.telephoneNumber = telephoneNumber;
+      this.emailAddress = emailAddress;
+      this.licensePlate = licensePlate;
+      this.membershipLevel = MembershipLevel.BRONZE;
+   }
+
+
    
    public Name getName() {
       return name;
