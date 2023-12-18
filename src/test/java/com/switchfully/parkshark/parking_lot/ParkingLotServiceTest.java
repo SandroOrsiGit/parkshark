@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ParkingLotServiceTest {
     @Autowired
     private ParkingLotService parkingLotService;
@@ -31,11 +34,6 @@ public class ParkingLotServiceTest {
     @Autowired
     private ParkingLotMapper parkingLotMapper;
 
-
-//    @BeforeEach
-//    void clearDataBase(@Autowired Flyway flyway) {
-//        flyway.clean();
-//    }
 
     @Test
     void givenParkingLot_whenMappingParkingLotToParkingLotDto_thenResultIsOfTypeParkingLotDtoWithSameFields() {
@@ -120,10 +118,10 @@ public class ParkingLotServiceTest {
                                                         "MarkVille")))));
 
 
-        parkingLotService.createParkingLot(createParkingLotDto);
+        ParkingLotDto parkingLotDto = parkingLotService.createParkingLot(createParkingLotDto);
 
         //WHEN
-        ParkingLotDto actual = parkingLotService.getParkingLotById(2);
+        ParkingLotDto actual = parkingLotService.getParkingLotById(parkingLotDto.getId());
 
         //THEN
         assertThat(actual.getName()).isEqualTo("mark of parkshark");
@@ -178,6 +176,8 @@ public class ParkingLotServiceTest {
 
     @Test
     void givenTwoNewParkingLotsInDatabase_whenGetAllParkingLots_thenReturnTheseParkingLots() {
+
+
         //WHEN
         List<ParkingLotDto> parkingLotDtoList = parkingLotService.getAllParkingLots();
 
