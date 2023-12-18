@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -88,6 +90,57 @@ class MemberServiceTest {
               .isEqualTo(memberMapper.mapCreateMemberDtoToMember(createMemberDto).getName().getFirstName());
       assertThat(memberService.getAllMembers()).hasSize(1);
       assertThat(memberDto.getMembershipLevel()).isEqualTo(createMemberDto.getMembershipLevel());
+   }
+
+   @Test
+   void givenThreeMembersInDatabase_whenGetAllMembers_thenReturnAllTheseMembers() {
+      //GIVEN
+      CreateMemberDto createMemberDto1 = new CreateMemberDto(
+              new Name("firstname", "lastname"),
+              new Address("testStreet", "22",
+                      new PostalCode("1700", "Brussels")),
+              "0495454545", "tester@gmail.com",
+              new LicensePlate("213456", "BE"),
+              MembershipLevel.SILVER);
+
+      memberService.saveMember(createMemberDto1);
+
+      CreateMemberDto createMemberDto2 = new CreateMemberDto(
+              new Name("first", "last"),
+              new Address("testStreetagain", "545",
+                      new PostalCode("1730", "Antwerpen")),
+              "049333345", "testagain@gmail.com",
+              new LicensePlate("11111", "UK"));
+
+      memberService.saveMember(createMemberDto2);
+
+      CreateMemberDto createMemberDto3 = new CreateMemberDto(
+              new Name("thirdtestfirst", "thirdtestlast"),
+              new Address("testStreetagain", "332",
+                      new PostalCode("1230", "Antwerpen")),
+              "0333345", "testzzzin@gmail.com",
+              new LicensePlate("11111", "UK"),
+              MembershipLevel.GOLD);
+
+      memberService.saveMember(createMemberDto3);
+
+      //WHEN
+      List<MemberDto> memberDtoList = memberService.getAllMembers();
+
+      //THEN
+      assertThat(memberDtoList).allSatisfy(memberDto -> assertThat(memberDto).isInstanceOf(MemberDto.class));
+      assertThat(memberDtoList)
+              .hasSize(3)
+              .extracting(memberDto -> memberDto.getName().getFirstName())
+              .containsExactly("firstname", "first", "thirdtestfirst");
+      assertThat(memberDtoList)
+              .extracting(MemberDto::getEmailAddress)
+              .containsExactly("tester@gmail.com", "testagain@gmail.com", "testzzzin@gmail.com");
+      assertThat(memberDtoList)
+              .extracting(MemberDto::getMembershipLevel)
+              .containsExactly(MembershipLevel.SILVER, MembershipLevel.BRONZE, MembershipLevel.GOLD);
+
+
    }
 
 
