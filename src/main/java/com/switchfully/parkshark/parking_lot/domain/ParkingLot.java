@@ -1,6 +1,7 @@
 package com.switchfully.parkshark.parking_lot.domain;
 
 import com.switchfully.parkshark.address.domain.Address;
+import com.switchfully.parkshark.division.domain.Division;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -28,16 +29,21 @@ public class ParkingLot {
 	inverseJoinColumns = {@JoinColumn( name = "fk_contact_person_id")})
 	private List<ContactPerson> contactPersons;
 
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_division_id")
+	private Division division;
+	
 	protected ParkingLot() {
 	}
 
-	public ParkingLot(String name, Category category, Integer maxCapacity, Double pricePerHour, Address address, List<ContactPerson> contactPersons) {
+	public ParkingLot(String name, Category category, Integer maxCapacity, Double pricePerHour, Address address, List<ContactPerson> contactPersons, Division division) {
 		this.name = name;
 		this.category = category;
 		this.maxCapacity = maxCapacity;
 		this.pricePerHour = pricePerHour;
 		this.address = address;
 		this.contactPersons = contactPersons;
+		this.division = division;
 	}
 
 	public long getId() {
@@ -67,6 +73,8 @@ public class ParkingLot {
 	public List<ContactPerson> getContactPersons() {
 		return contactPersons;
 	}
-
-
+	
+	public Division getDivision() {
+		return division;
+	}
 }
