@@ -19,6 +19,10 @@ public class MemberService {
       this.memberMapper = memberMapper;
    }
 
+   public Member findMemberById(long id) {
+      return memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+   }
+   
    public MemberDto saveMember(CreateMemberDto createMemberDto) {
       return memberMapper.mapMemberToMemberDto(memberRepository.save(memberMapper.mapCreateMemberDtoToMember(createMemberDto)));
    }

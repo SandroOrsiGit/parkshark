@@ -4,6 +4,7 @@ import com.switchfully.parkshark.address.domain.Address;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "MEMBER")
@@ -57,6 +58,10 @@ public class Member {
       this.registrationDate = LocalDate.now();
    }
    
+   public Long getId() {
+      return id;
+   }
+   
    public Name getName() {
       return name;
    }
@@ -84,7 +89,22 @@ public class Member {
    public MembershipLevel getMembershipLevel() {
       return membershipLevel;
    }
-
+   
+   @Override
+   public boolean equals(Object o) {
+      if (this == o)
+         return true;
+      if (o == null || getClass() != o.getClass())
+         return false;
+      Member member = (Member) o;
+      return Objects.equals(id, member.id);
+   }
+   
+   @Override
+   public int hashCode() {
+      return Objects.hash(id);
+   }
+   
    @Override
    public String toString() {
       return "Member{" + "name=" + name + ", address=" + address + ", telephoneNumber='" + telephoneNumber + '\'' + ", emailAddress='" + emailAddress + '\'' + ", licensePlate='" + licensePlate + '\'' + ", date=" + registrationDate + '}';

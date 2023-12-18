@@ -13,8 +13,6 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TE
 
 @SpringBootTest
 
-@Sql("/data.sql")
-
 class ManagerServiceTest {
    
    @Autowired
@@ -27,6 +25,7 @@ class ManagerServiceTest {
    void findManagerById_ShouldReturnManagerWhenFound() {
       
 
+      // TODO refactor (without ID)
       Manager expectedManager = new Manager(
               1,
               "test",
