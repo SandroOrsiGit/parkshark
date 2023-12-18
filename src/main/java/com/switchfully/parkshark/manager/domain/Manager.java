@@ -21,8 +21,7 @@ public class Manager {
     public Manager() {
     }
 
-    public Manager(int id, String username, String password) {
-        this.id = id;
+    public Manager(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -38,9 +37,9 @@ public class Manager {
     public String getPassword() {
         return password;
     }
-    
 
-    // TODO - refactor
+
+//     TODO - refactor
 
     public void setId(long id) {
         this.id = id;
