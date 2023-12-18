@@ -27,27 +27,33 @@ public class Member {
    @Embedded
    private LicensePlate licensePlate;
    
-   @Column(name = "registrationDate")
+   @Column(name = "registration_date")
    private LocalDate registrationDate;
+
+   @Enumerated(EnumType.STRING)
+   @Column(name = "membership_level")
+   private MembershipLevel membershipLevel;
    
    public Member() {
    }
    
-   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate date) {
+   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, LocalDate date, MembershipLevel membershipLevel) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
       this.registrationDate = date;
+      this.membershipLevel = membershipLevel;
    }
    
-   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+   public Member(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, MembershipLevel membershipLevel) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
+      this.membershipLevel = membershipLevel;
       this.registrationDate = LocalDate.now();
    }
    
@@ -74,7 +80,11 @@ public class Member {
    public LocalDate getDate() {
       return registrationDate;
    }
-   
+
+   public MembershipLevel getMembershipLevel() {
+      return membershipLevel;
+   }
+
    @Override
    public String toString() {
       return "Member{" + "name=" + name + ", address=" + address + ", telephoneNumber='" + telephoneNumber + '\'' + ", emailAddress='" + emailAddress + '\'' + ", licensePlate='" + licensePlate + '\'' + ", date=" + registrationDate + '}';
