@@ -7,12 +7,13 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 
 @SpringBootTest
-
+@Transactional
 class ManagerServiceTest {
    
    @Autowired
@@ -20,24 +21,23 @@ class ManagerServiceTest {
    
    @Autowired
    private ManagerRepository managerRepository;
+
    
    @Test
-   void findManagerById_ShouldReturnManagerWhenFound() {
-      
-
-      // TODO refactor (without ID)
+   void whenFindManagerById_ShouldReturnManagerWhenFound() {
+      //GIVEN
       Manager expectedManager = new Manager(
-              1,
-              "test",
-              "test"
+              "testertest",
+              "testertest"
       );
-      expectedManager.setId(1);
-      
+
+      //WHEN
       managerRepository.save(expectedManager);
-      
-      Manager actualManager = managerService.findManagerById(1);
-      
-      assertEquals(expectedManager, actualManager);
-   
+
+      Manager result = managerService.findManagerById(expectedManager.getId());
+
+      //THEN
+      assertEquals(expectedManager, result);
    }
+
 }
