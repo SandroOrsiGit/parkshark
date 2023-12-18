@@ -10,7 +10,8 @@ public class Division {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private long id;
+   @Column(name= "division_id")
+   private final Long id = 1L;
    
    @Column(name = "division_name")
    private String divisionName;
@@ -22,13 +23,13 @@ public class Division {
    private String director;
 
    @Column(name = "parent_division_id")
-   private long parentId;
+   private Long parentId;
 
 
    public Division() {
    }
 
-   public Division(String divisionName, String originalName, String director, long parentId) {
+   public Division(String divisionName, String originalName, String director, Long parentId) {
       this.divisionName = divisionName;
       this.originalName = originalName;
       this.director = director;
