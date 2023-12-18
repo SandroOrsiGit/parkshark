@@ -4,11 +4,13 @@ import com.switchfully.parkshark.parking_lot.domain.ParkingLot;
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ParkingLotService {
 
 	private ParkingLotRepository parkingLotRepository;
