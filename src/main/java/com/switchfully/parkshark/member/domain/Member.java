@@ -15,7 +15,7 @@ public class Member {
    private Long id;
    @Embedded
    private Name name;
-   @OneToOne
+   @OneToOne(cascade = CascadeType.PERSIST)
    @JoinColumn(name = "fk_address_id")
    private  Address address;
    @Column(name = "telephone_number")
