@@ -4,11 +4,13 @@ import com.switchfully.parkshark.member.domain.Member;
 import com.switchfully.parkshark.member.domain.dto.CreateMemberDto;
 import com.switchfully.parkshark.member.domain.dto.MemberDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class MemberService {
    
    private final MemberRepository memberRepository;
