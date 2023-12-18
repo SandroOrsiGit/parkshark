@@ -4,7 +4,16 @@ public class CreateDivisionDto {
    private String divisionName;
    private String originalName;
    private String director;
-   
+
+   private long parentId;
+
+   public CreateDivisionDto(String divisionName, String originalName, String director, long parentId) {
+      this.divisionName = divisionName;
+      this.originalName = originalName;
+      this.director = director;
+      this.parentId = parentId;
+   }
+
    public CreateDivisionDto(String divisionName, String originalName, String director) {
       this.divisionName = divisionName;
       this.originalName = originalName;
@@ -21,5 +30,9 @@ public class CreateDivisionDto {
    
    public String getDirector() {
       return director;
+   }
+
+   public long getParentId() {
+      return parentId;
    }
 }
