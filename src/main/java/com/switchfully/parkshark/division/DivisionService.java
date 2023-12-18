@@ -4,6 +4,9 @@ import com.switchfully.parkshark.division.domain.dto.CreateDivisionDto;
 import com.switchfully.parkshark.division.domain.dto.DivisionDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DivisionService {
    
@@ -20,5 +23,13 @@ public class DivisionService {
       return divisionMapper.mapDivisionToDivisionDto(divisionRepository.save(divisionMapper.mapCreateDivisionDToToDivision(createDivisionDto)));
    }
 
-   
+
+   //TODO add custom exception
+   public DivisionDto getDivisionById(long id) {
+      return divisionMapper.mapDivisionToDivisionDto(divisionRepository.findById(id).orElseThrow(IllegalArgumentException::new));
+   }
+
+   public List<DivisionDto> getAllDivisions() {
+      return divisionRepository.findAll().stream().map(divisionMapper::mapDivisionToDivisionDto).collect(Collectors.toList());
+   }
 }
