@@ -60,4 +60,19 @@ public class DivisionServiceTest {
         assertThat(divisionDto.getDirector()).isEqualTo(createDivisionDto.getDirector());
     }
 
+    @Test
+    void whenCreateDivisionWithParentDivisionId_whenSaveDivision_thenDivisionIsInDatabase() {
+        //WHEN
+        CreateDivisionDto createDivisionDto = new CreateDivisionDto("Dall-E", "Dall-E by Microsoft", "boss", 1);
+
+        //WHEN
+        DivisionDto divisionDto = divisionService.saveDivision(createDivisionDto);
+
+        //THEN
+        assertThat(divisionDto.getDivisionName()).isEqualTo(createDivisionDto.getDivisionName());
+        assertThat(divisionDto.getOriginalName()).isEqualTo(createDivisionDto.getOriginalName());
+        assertThat(divisionDto.getDirector()).isEqualTo(createDivisionDto.getDirector());
+    }
+
+
 }

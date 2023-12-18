@@ -4,11 +4,13 @@ import com.switchfully.parkshark.member.domain.Member;
 import com.switchfully.parkshark.member.domain.dto.CreateMemberDto;
 import com.switchfully.parkshark.member.domain.dto.MemberDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class MemberService {
    
    private final MemberRepository memberRepository;
@@ -19,8 +21,9 @@ public class MemberService {
       this.memberMapper = memberMapper;
    }
 
-   public Member findMemberById(long id) {
-      return memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+   public MemberDto findMemberById(long id) {
+      Member member = memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+      return memberMapper.mapMemberToMemberDto(member);
    }
    
    public MemberDto saveMember(CreateMemberDto createMemberDto) {
