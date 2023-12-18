@@ -8,7 +8,7 @@ public class DivisionDto {
    
    private final String director;
 
-   private long parentId;
+   private Long parentId;
    
    public DivisionDto(String divisionName, String originalName, String director) {
       
@@ -17,7 +17,7 @@ public class DivisionDto {
       this.director = director;
    }
 
-   public DivisionDto(String divisionName, String originalName, String director, long parentId) {
+   public DivisionDto(String divisionName, String originalName, String director, Long parentId) {
       this.divisionName = divisionName;
       this.originalName = originalName;
       this.director = director;
@@ -36,7 +36,7 @@ public class DivisionDto {
       return director;
    }
 
-   public long getParentId() {
+   public Long getParentId() {
       return parentId;
    }
 
