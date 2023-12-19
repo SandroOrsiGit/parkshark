@@ -1,5 +1,6 @@
 package com.switchfully.parkshark.parking_lot;
 
+import com.switchfully.parkshark.manager.ManagerService;
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
 import org.springframework.http.HttpStatus;
@@ -12,26 +13,33 @@ import java.util.List;
 public class ParkingLotController {
 
 	private final ParkingLotService parkingLotService;
+	private final ManagerService managerService;
 
-	public ParkingLotController(ParkingLotService parkingLotService) {
+	public ParkingLotController(ParkingLotService parkingLotService, ManagerService managerService) {
 		this.parkingLotService = parkingLotService;
+		this.managerService = managerService;
 	}
 
-	//TODO add manager checks
-	@ResponseStatus(HttpStatus.CREATED)
+
+
+  @ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(consumes = "application/json", produces = "application/json")
-	public ParkingLotDto createParkingLot(@RequestBody CreateParkingLotDto createParkingLotDto) {
+	public ParkingLotDto createParkingLot(@RequestHeader String username, @RequestHeader String password, @RequestBody CreateParkingLotDto createParkingLotDto){
+		managerService.checkIfUserIsManager(username, password);
 		return parkingLotService.createParkingLot(createParkingLotDto);
 	}
 
-	//TODO add manager checks
 	@GetMapping(produces = "application/json")
-	public List<ParkingLotDto> getAllParkingLots() {
+	public List<ParkingLotDto> getAllParkingLots(@RequestHeader String username, @RequestHeader String password) {
+		managerService.checkIfUserIsManager(username, password);
+
 		return parkingLotService.getAllParkingLots();
 	}
 
 	@GetMapping(path = "{id}", produces = "application/json")
-	public ParkingLotDto getParkingLotById(@PathVariable long id) {
+	public ParkingLotDto getParkingLotById(@RequestHeader String username, @RequestHeader String password, @PathVariable long id) {
+		managerService.checkIfUserIsManager(username, password);
+
 		return parkingLotService.getParkingLotById(id);
 	}
 

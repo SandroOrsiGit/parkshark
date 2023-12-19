@@ -1,6 +1,10 @@
 package com.switchfully.parkshark.member;
 
 import com.switchfully.parkshark.address.domain.Address;
+import com.switchfully.parkshark.exception.ManagerPasswordIncorrectException;
+import com.switchfully.parkshark.exception.NotAManagerException;
+import com.switchfully.parkshark.manager.ManagerService;
+import com.switchfully.parkshark.manager.domain.Manager;
 import com.switchfully.parkshark.member.domain.LicensePlate;
 import com.switchfully.parkshark.member.domain.Member;
 import com.switchfully.parkshark.member.domain.MembershipLevel;
@@ -8,6 +12,7 @@ import com.switchfully.parkshark.member.domain.Name;
 import com.switchfully.parkshark.member.domain.dto.CreateMemberDto;
 import com.switchfully.parkshark.member.domain.dto.MemberDto;
 import com.switchfully.parkshark.parking_lot.domain.PostalCode;
+import org.hibernate.engine.spi.Managed;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +34,8 @@ class MemberServiceTest {
    private MemberRepository memberRepository;
    @Autowired
    private MemberMapper memberMapper;
+   @Autowired
+   private MemberController memberController;
    
    @Test
    void givenMember_whenSaveMemberinDatabase_thenMemberDtoFromDatabaseReturnsWithSameFields() {
@@ -139,10 +146,35 @@ class MemberServiceTest {
       assertThat(memberDtoList)
               .extracting(MemberDto::getMembershipLevel)
               .containsExactly(MembershipLevel.SILVER, MembershipLevel.BRONZE, MembershipLevel.GOLD);
-
-
    }
 
+   @Test
+   void givenInvalidManagerUserName_whenGetAllMembers_thenThrowNotAManagerException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "parky");
 
+      //WHEN & THEN
+      assertThrows(NotAManagerException.class, () -> memberController.getAllMembers(manager.getUsername(), manager.getPassword()))
+      ;
+   }
+
+   @Test
+   void givenInvalidManagerPassword_whenGetAllParkingLots_thenThrowManagerPasswordException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "wrongPassword");
+
+      //WHEN & THEN
+      assertThrows(ManagerPasswordIncorrectException.class, () -> memberController.getAllMembers(manager.getUsername(), manager.getPassword()))
+      ;
+   }
+
+   @Test
+   void givenInvalidManagerPassword_whenGetMemberById_thenThrowManagerPasswordException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "wrongPassword");
+
+      //WHEN & THEN
+      assertThrows(ManagerPasswordIncorrectException.class, () -> memberController.getMemberById(manager.getUsername(), manager.getPassword(), 1));
+   }
    
 }

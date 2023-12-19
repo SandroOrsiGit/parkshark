@@ -2,6 +2,9 @@ package com.switchfully.parkshark.parking_lot;
 
 import com.switchfully.parkshark.address.domain.Address;
 import com.switchfully.parkshark.division.domain.Division;
+import com.switchfully.parkshark.exception.ManagerPasswordIncorrectException;
+import com.switchfully.parkshark.exception.NotAManagerException;
+import com.switchfully.parkshark.manager.domain.Manager;
 import com.switchfully.parkshark.parking_lot.domain.Category;
 import com.switchfully.parkshark.parking_lot.domain.ContactPerson;
 import com.switchfully.parkshark.parking_lot.domain.ParkingLot;
@@ -17,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
@@ -29,6 +33,8 @@ public class ParkingLotServiceTest {
    private ParkingLotRepository parkingLotRepository;
    @Autowired
    private ParkingLotMapper parkingLotMapper;
+   @Autowired
+   private ParkingLotController parkingLotController;
    
    @Test
    void givenParkingLot_whenMappingParkingLotToParkingLotDto_thenResultIsOfTypeParkingLotDtoWithSameFields() {
@@ -120,4 +126,31 @@ public class ParkingLotServiceTest {
       
    }
 
+   @Test
+   void givenInvalidManagerUserName_whenGetAllParkingLots_thenThrowNotAManagerException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "parky");
+
+      //WHEN & THEN
+      assertThrows(NotAManagerException.class, () -> parkingLotController.getAllParkingLots(manager.getUsername(), manager.getPassword()));
+   }
+
+   @Test
+   void givenInvalidManagerPassword_whenGetAllParkingLots_thenThrowManagerPasswordException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "wrongPassword");
+
+      //WHEN & THEN
+      assertThrows(ManagerPasswordIncorrectException.class, () -> parkingLotController.getAllParkingLots(manager.getUsername(), manager.getPassword()))
+      ;
+   }
+
+   @Test
+   void givenInvalidManagerPassword_whenGetParkingLotById_thenThrowManagerPasswordException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "wrongPassword");
+
+      //WHEN & THEN
+      assertThrows(ManagerPasswordIncorrectException.class, () -> parkingLotController.getParkingLotById(manager.getUsername(), manager.getPassword(), 1));
+   }
 }
