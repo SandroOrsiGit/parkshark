@@ -38,4 +38,6 @@ public class MemberService {
    public List<MemberDto> getAllMembers() {
       return memberRepository.findAll().stream().map(memberMapper::mapMemberToMemberDto).toList();
    }
+
+
 }
