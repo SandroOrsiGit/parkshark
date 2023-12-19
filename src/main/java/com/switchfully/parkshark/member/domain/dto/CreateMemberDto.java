@@ -8,6 +8,7 @@ import com.switchfully.parkshark.member.domain.Name;
 
 public class CreateMemberDto {
    private Name name;
+   
    private Address address;
    
    private String telephoneNumber;
@@ -15,10 +16,13 @@ public class CreateMemberDto {
    private String emailAddress;
    
    private LicensePlate licensePlate;
-
+   
    private MembershipLevel membershipLevel;
    
-   public CreateMemberDto (Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, MembershipLevel membershipLevel) {
+   public CreateMemberDto() {
+   }
+   
+   public CreateMemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate, MembershipLevel membershipLevel) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
@@ -26,8 +30,8 @@ public class CreateMemberDto {
       this.licensePlate = licensePlate;
       this.membershipLevel = membershipLevel;
    }
-
-   public CreateMemberDto (Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
+   
+   public CreateMemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
       this.name = name;
       this.address = address;
       this.telephoneNumber = telephoneNumber;
@@ -35,8 +39,7 @@ public class CreateMemberDto {
       this.licensePlate = licensePlate;
       this.membershipLevel = MembershipLevel.BRONZE;
    }
-
-
+   
    
    public Name getName() {
       return name;
@@ -57,7 +60,7 @@ public class CreateMemberDto {
    public LicensePlate getLicensePlate() {
       return licensePlate;
    }
-
+   
    public MembershipLevel getMembershipLevel() {
       return membershipLevel;
    }
