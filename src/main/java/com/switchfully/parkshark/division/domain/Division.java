@@ -42,7 +42,7 @@ public class Division {
       this.director = director;
    }
    
-   public long getId() {
+   public Long getId() {
       return id;
    }
    
@@ -58,7 +58,7 @@ public class Division {
       return director;
    }
 
-   public long getParentId() {
+   public Long getParentId() {
       return parentId;
    }
 
