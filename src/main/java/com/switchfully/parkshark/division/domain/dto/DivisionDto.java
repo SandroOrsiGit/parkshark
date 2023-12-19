@@ -2,21 +2,17 @@ package com.switchfully.parkshark.division.domain.dto;
 
 public class DivisionDto {
    
-   private final String divisionName;
+   private  String divisionName;
    
-   private final String originalName;
+   private  String originalName;
    
-   private final String director;
+   private  String director;
 
    private Long parentId;
    
-   public DivisionDto(String divisionName, String originalName, String director) {
-      
-      this.divisionName = divisionName;
-      this.originalName = originalName;
-      this.director = director;
+   public DivisionDto() {
    }
-
+   
    public DivisionDto(String divisionName, String originalName, String director, Long parentId) {
       this.divisionName = divisionName;
       this.originalName = originalName;
