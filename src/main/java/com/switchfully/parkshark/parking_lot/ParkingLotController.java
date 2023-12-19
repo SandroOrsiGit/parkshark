@@ -18,18 +18,24 @@ public class ParkingLotController {
 
 	//TODO add manager checks
 	@PostMapping(consumes = "application/json", produces = "application/json")
-	public ParkingLotDto createParkingLot(@RequestBody CreateParkingLotDto createParkingLotDto){
+	public ParkingLotDto createParkingLot(@RequestHeader String username, @RequestHeader String password, @RequestBody CreateParkingLotDto createParkingLotDto){
+		parkingLotService.checkIfUserIsManager(username, password);
+
 		return parkingLotService.createParkingLot(createParkingLotDto);
 	}
 
 	//TODO add manager checks
 	@GetMapping(produces = "application/json")
-	public List<ParkingLotDto> getAllParkingLots() {
+	public List<ParkingLotDto> getAllParkingLots(@RequestHeader String username, @RequestHeader String password) {
+		parkingLotService.checkIfUserIsManager(username, password);
+
 		return parkingLotService.getAllParkingLots();
 	}
 
 	@GetMapping(path = "{id}", produces = "application/json")
-	public ParkingLotDto getParkingLotById(@PathVariable long id) {
+	public ParkingLotDto getParkingLotById(@RequestHeader String username, @RequestHeader String password, @PathVariable long id) {
+		parkingLotService.checkIfUserIsManager(username, password);
+
 		return parkingLotService.getParkingLotById(id);
 	}
 
