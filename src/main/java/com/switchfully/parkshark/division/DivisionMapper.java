@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DivisionMapper {
    public DivisionDto mapDivisionToDivisionDto(Division division) {
+      if (division.getParentId() == null) {
+         return new DivisionDto(division.getDivisionName(), division.getOriginalName(), division.getDirector());
+      }
       return new DivisionDto(division.getDivisionName(), division.getOriginalName(), division.getDirector(), division.getParentId());
    }
    

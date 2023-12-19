@@ -63,7 +63,7 @@ public class DivisionServiceTest {
     @Test
     void whenCreateDivisionWithParentDivisionId_whenSaveDivision_thenDivisionIsInDatabase() {
         //WHEN
-        CreateDivisionDto createDivisionDto = new CreateDivisionDto("Dall-E", "Dall-E by Microsoft", "boss", 1);
+        CreateDivisionDto createDivisionDto = new CreateDivisionDto("Dall-E", "Dall-E by Microsoft", "boss", 1L);
 
         //WHEN
         DivisionDto divisionDto = divisionService.saveDivision(createDivisionDto);

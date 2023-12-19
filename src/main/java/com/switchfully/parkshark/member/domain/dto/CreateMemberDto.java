@@ -5,6 +5,8 @@ import com.switchfully.parkshark.member.domain.LicensePlate;
 import com.switchfully.parkshark.member.domain.MembershipLevel;
 import com.switchfully.parkshark.member.domain.Name;
 
+import java.util.Objects;
+
 
 public class CreateMemberDto {
    private Name name;
@@ -28,18 +30,9 @@ public class CreateMemberDto {
       this.telephoneNumber = telephoneNumber;
       this.emailAddress = emailAddress;
       this.licensePlate = licensePlate;
-      this.membershipLevel = membershipLevel;
+      this.membershipLevel = Objects.requireNonNullElse(membershipLevel, MembershipLevel.BRONZE);
+      
    }
-   
-   public CreateMemberDto(Name name, Address address, String telephoneNumber, String emailAddress, LicensePlate licensePlate) {
-      this.name = name;
-      this.address = address;
-      this.telephoneNumber = telephoneNumber;
-      this.emailAddress = emailAddress;
-      this.licensePlate = licensePlate;
-      this.membershipLevel = MembershipLevel.BRONZE;
-   }
-   
    
    public Name getName() {
       return name;
@@ -62,6 +55,9 @@ public class CreateMemberDto {
    }
    
    public MembershipLevel getMembershipLevel() {
+      if (membershipLevel == null) {
+         return MembershipLevel.BRONZE;
+      }
       return membershipLevel;
    }
 }

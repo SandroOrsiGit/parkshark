@@ -3,16 +3,13 @@ package com.switchfully.parkshark.member;
 import com.switchfully.parkshark.address.domain.Address;
 import com.switchfully.parkshark.exception.ManagerPasswordIncorrectException;
 import com.switchfully.parkshark.exception.NotAManagerException;
-import com.switchfully.parkshark.manager.ManagerService;
 import com.switchfully.parkshark.manager.domain.Manager;
 import com.switchfully.parkshark.member.domain.LicensePlate;
-import com.switchfully.parkshark.member.domain.Member;
 import com.switchfully.parkshark.member.domain.MembershipLevel;
 import com.switchfully.parkshark.member.domain.Name;
 import com.switchfully.parkshark.member.domain.dto.CreateMemberDto;
 import com.switchfully.parkshark.member.domain.dto.MemberDto;
 import com.switchfully.parkshark.parking_lot.domain.PostalCode;
-import org.hibernate.engine.spi.Managed;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +42,7 @@ class MemberServiceTest {
               new Address("testStreet", "22",
                       new PostalCode("1700", "Bruffelf")),
               "0495454545", "tester@gmail.com",
-              new LicensePlate("213456", "BE"));
+              new LicensePlate("213456", "BE"), null);
 
       //WHEN
       MemberDto memberDto = memberService.saveMember(createMemberDto);
@@ -117,7 +114,7 @@ class MemberServiceTest {
               new Address("testStreetagain", "545",
                       new PostalCode("1730", "Antwerpen")),
               "049333345", "testagain@gmail.com",
-              new LicensePlate("11111", "UK"));
+              new LicensePlate("11111", "UK"), null);
 
       memberService.saveMember(createMemberDto2);
 
