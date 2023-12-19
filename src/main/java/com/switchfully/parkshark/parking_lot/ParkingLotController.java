@@ -2,6 +2,7 @@ package com.switchfully.parkshark.parking_lot;
 
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class ParkingLotController {
 	}
 
 	//TODO add manager checks
+	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(consumes = "application/json", produces = "application/json")
-	public ParkingLotDto createParkingLot(@RequestBody CreateParkingLotDto createParkingLotDto){
+	public ParkingLotDto createParkingLot(@RequestBody CreateParkingLotDto createParkingLotDto) {
 		return parkingLotService.createParkingLot(createParkingLotDto);
 	}
 
