@@ -39,7 +39,7 @@ class MemberControllerIntegrationTest {
 				new PostalCode("3333", "testLocation")),
 				"0123456789",
 				"test@test.be",
-				new LicensePlate("123456", "BE"));
+				new LicensePlate("123456", "BE"), null);
 	}
 
 	@Test

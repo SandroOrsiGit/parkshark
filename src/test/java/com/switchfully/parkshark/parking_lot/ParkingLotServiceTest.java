@@ -117,11 +117,11 @@ public class ParkingLotServiceTest {
       
       //THEN
       assertThat(parkingLotDtoList).allSatisfy(parkingLotDto -> assertThat(parkingLotDto).isInstanceOf(ParkingLotDto.class));
-      assertThat(parkingLotDtoList).hasSize(3);
+      assertThat(parkingLotDtoList).hasSize(4);
       
       assertThat(parkingLotDtoList.get(0).getName()).isEqualTo("ParkingLotName");
-      assertThat(parkingLotDtoList.get(1).getName()).isEqualTo(parkingLotDto1.getName());
-      assertThat(parkingLotDtoList.get(2).getName()).isEqualTo(parkingLotDto2.getName());
+      assertThat(parkingLotDtoList.get(2).getName()).isEqualTo(parkingLotDto1.getName());
+      assertThat(parkingLotDtoList.get(3).getName()).isEqualTo(parkingLotDto2.getName());
       
       
    }
