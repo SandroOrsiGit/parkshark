@@ -10,8 +10,8 @@ public class Division {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "division_id")
-   private Long id;
+   @Column(name= "division_id")
+   private final Long id = 1L;
    
    @Column(name = "division_name")
    private String divisionName;
