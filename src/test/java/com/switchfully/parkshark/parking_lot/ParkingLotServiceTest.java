@@ -145,5 +145,14 @@ public class ParkingLotServiceTest {
       assertThrows(ManagerPasswordIncorrectException.class, () -> parkingLotController.getAllParkingLots(manager.getUsername(), manager.getPassword()))
       ;
    }
+
+   @Test
+   void givenInvalidManagerPassword_whenGetParkingLotById_thenThrowManagerPasswordException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "wrongPassword");
+
+      //WHEN & THEN
+      assertThrows(ManagerPasswordIncorrectException.class, () -> parkingLotController.getParkingLotById(manager.getUsername(), manager.getPassword(), 1));
+   }
    
 }

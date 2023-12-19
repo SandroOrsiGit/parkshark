@@ -167,5 +167,14 @@ class MemberServiceTest {
       assertThrows(ManagerPasswordIncorrectException.class, () -> memberController.getAllMembers(manager.getUsername(), manager.getPassword()))
       ;
    }
+
+   @Test
+   void givenInvalidManagerPassword_whenGetMemberById_thenThrowManagerPasswordException() {
+      //GIVEN
+      Manager manager = new Manager("wrongUsername", "wrongPassword");
+
+      //WHEN & THEN
+      assertThrows(ManagerPasswordIncorrectException.class, () -> memberController.getMemberById(manager.getUsername(), manager.getPassword(), 1));
+   }
    
 }
