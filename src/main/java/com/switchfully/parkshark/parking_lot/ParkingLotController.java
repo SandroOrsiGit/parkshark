@@ -3,6 +3,7 @@ package com.switchfully.parkshark.parking_lot;
 import com.switchfully.parkshark.manager.ManagerService;
 import com.switchfully.parkshark.parking_lot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.parking_lot.dto.ParkingLotDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +20,12 @@ public class ParkingLotController {
 		this.managerService = managerService;
 	}
 
+
+
+  @ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ParkingLotDto createParkingLot(@RequestHeader String username, @RequestHeader String password, @RequestBody CreateParkingLotDto createParkingLotDto){
 		managerService.checkIfUserIsManager(username, password);
-
 		return parkingLotService.createParkingLot(createParkingLotDto);
 	}
 

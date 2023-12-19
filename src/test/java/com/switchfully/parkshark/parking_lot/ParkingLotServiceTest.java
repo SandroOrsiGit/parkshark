@@ -132,8 +132,7 @@ public class ParkingLotServiceTest {
       Manager manager = new Manager("wrongUsername", "parky");
 
       //WHEN & THEN
-      assertThrows(NotAManagerException.class, () -> parkingLotController.getAllParkingLots(manager.getUsername(), manager.getPassword()))
-      ;
+      assertThrows(NotAManagerException.class, () -> parkingLotController.getAllParkingLots(manager.getUsername(), manager.getPassword()));
    }
 
    @Test
@@ -154,5 +153,4 @@ public class ParkingLotServiceTest {
       //WHEN & THEN
       assertThrows(ManagerPasswordIncorrectException.class, () -> parkingLotController.getParkingLotById(manager.getUsername(), manager.getPassword(), 1));
    }
-   
 }
